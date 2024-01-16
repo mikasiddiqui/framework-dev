@@ -1,0 +1,47 @@
+{
+    "name": "@framework/monorepo",
+    "version": "1.0.0",
+    "devDependencies": {
+        "@semantic-release/changelog": "6.0.3",
+        "@semantic-release/commit-analyzer": "9.0.2",
+        "@semantic-release/git": "10.0.1",
+        "@semantic-release/github": "8.1.0",
+        "@semantic-release/npm": "10.0.3",
+        "@semantic-release/release-notes-generator": "11.0.2",
+        "dotenv-cli": "7.0.0",
+        "eslint": "8.28.0",
+        "eslint-config-turbo": "latest",
+        "madge": "latest",
+        "husky": "8.0.1",
+        "prettier": "2.6.2",
+        "prettier-config-standard": "5.0.0",
+        "semantic-release": "21.0.2",
+        "turbo": "latest"
+    },
+    "scripts": {
+        "build": "dotenv -- turbo run build",
+        "dev": "dotenv -- turbo run dev --parallel",
+        "start": "dotenv --  turbo run start",
+        "lint": "turbo run lint",
+        "clean": "turbo run clean",
+        "dependency-graph": "pnpm dlx madge --extensions js,jsx,ts,tsx,css,md,mdx ./ --exclude '.next/|tailwind.config.js|reset.d.ts|prettier.config.js|postcss.config.js|playwright.config.ts|next.config.js|next-env.d.ts|instrumentation.ts|e2e/|README.md|.storybook/|.eslintrc.js|dist/' --image graph.png",
+        "release": "semantic-release",
+        "db:start": "supabase start",
+        "db:reset": "supabase db reset",
+        "db:push": "supabase db push",
+        "db:migration": "supabase migration new",
+        "db:migrate": "supabase migration up",
+        "generate-types": "supabase gen types typescript --project-id aqubljylrjyaafvbkdnx --schema public > packages/database/src/generated-types.ts"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "pnpm prettier"
+        }
+    },
+    "private": true,
+    "workspaces": [
+        "packages/*",
+        "apps/*"
+    ],
+    "packageManager": "pnpm@7.15.0"
+}

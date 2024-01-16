@@ -1,0 +1,31 @@
+{
+    "name": "@framework/inference",
+    "version": "1.0.0",
+    "description": "",
+    "main": "./src/index.ts",
+    "types": "./src/index.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/cjs/index.d.ts",
+            "require": "./dist/cjs/index.js",
+            "import": "./dist/esm/index.js"
+        }
+    },
+    "author": "umi <dreadera>",
+    "license": "ISC",
+    "scripts": {
+        "dev": "pnpm build --watch",
+        "build": "tsc && tsc -p tsconfig.esm.json && echo '{\"type\": \"module\"}' > ./dist/esm/package.json && tsc -p tsconfig.esm.json",
+        "lint": "TIMING=1 eslint \"**/*.{ts,tsx,js,jsx}\" --fix",
+        "clean": "rm -rf ./tsconfig.tsbuildinfo && rm -rf ./dist && rm -rf .turbo"
+    },
+    "dependencies": {
+        "ai": "^2.2.31",
+        "openai": "^4.24.7"
+    },
+    "keywords": [],
+    "devDependencies": {
+        "@types/node": "18.15.0",
+        "typescript": "5.0.2"
+    }
+}

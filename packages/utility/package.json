@@ -1,0 +1,34 @@
+{
+    "name": "@framework/utility",
+    "version": "1.0.0",
+    "description": "Utiltiy functions for the monorepo",
+    "main": "./src/index.ts",
+    "types": "./src/index.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/cjs/index.d.ts",
+            "require": "./dist/cjs/index.js",
+            "import": "./dist/esm/index.js"
+        }
+    },
+    "author": "umi <dreadera>",
+    "license": "ISC",
+    "scripts": {
+        "dev": "pnpm build --watch",
+        "build": "tsc && tsc -p tsconfig.esm.json && echo '{\"type\": \"module\"}' > ./dist/esm/package.json && tsc -p tsconfig.esm.json",
+        "lint": "TIMING=1 eslint \"**/*.{ts,tsx,js,jsx}\" --fix",
+        "clean": "rm -rf ./tsconfig.tsbuildinfo && rm -rf ./dist && rm -rf .turbo"
+    },
+    "dependencies": {
+        "dayjs": "^1.11.10",
+        "ky": "^1.2.0",
+        "ky-universal": "^0.12.0",
+        "uuid": "^9.0.1"
+    },
+    "keywords": [],
+    "devDependencies": {
+        "@types/node": "18.15.0",
+        "@types/uuid": "^9.0.7",
+        "typescript": "5.0.2"
+    }
+}
